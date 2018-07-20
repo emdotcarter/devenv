@@ -6,8 +6,10 @@ RUN apt-get update
 RUN apt-get install -y \
       zsh \
       locales \
-      vim \
-      tmux
+      tmux \
+      curl \
+      git \
+      vim
 RUN apt-get autoremove -y \
     && apt-get clean -y
 
@@ -18,9 +20,16 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-WORKDIR ${HOME}
+# Set zsh as default
+RUN chsh -s /bin/zsh root
 
-# development directory
+# oh-my-zsh
+RUN git clone https://github.com/robbyrussell/oh-my-zsh ${HOME}/.oh-my-zsh
+
+WORKDIR ${HOME}
 RUN mkdir ${HOME}/dev
+
+# dotfiles
+RUN ln -s ${HOME}/dev/devenv/dotfiles/zshrc ${HOME}/.zshrc
 
 ENTRYPOINT ["tmux", "new"]
