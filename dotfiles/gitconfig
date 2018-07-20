@@ -1,0 +1,26 @@
+[user]
+  name = Matthew Carter
+  email = mdotcarter@gmail.com
+[color]
+  ui = auto
+[alias]
+  ci = commit -v
+  co = checkout
+  st = status
+  oneline = log --pretty=format:\"%h %ad%x20%s%x20%x28%an%x29\" --date=short
+  staged = diff --cached
+[alias "push"]
+  please = push --force-with-lease
+[push]
+  default = current
+[rebase]
+  autosquash = true
+[core]
+  autocrlf = input
+  excludesfile = ~/.gitignore
+[pager]
+  log = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+  show = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+  diff = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+[grep]
+  lineNumber = true

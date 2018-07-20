@@ -3,6 +3,7 @@ ID ?= 0
 run:
 	docker run -itd \
 		--name=devenv-$(ID) \
+		-v=$$HOME/.ssh/id_rsa_github_emdotcarter:/root/.ssh/id_rsa_github_emdotcarter \
 		-v=$$PWD:/root/dev/devenv \
 		emdotcarter/devenv \
 		|| docker start devenv-$(ID)
