@@ -10,7 +10,7 @@ run:
 	docker ps
 
 stop:
-	docker stop $$(docker ps --aq)
+	docker stop $$(docker ps -aq)
 
 clean:
 	docker rm $$(docker ps -aq)

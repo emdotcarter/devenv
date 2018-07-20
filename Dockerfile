@@ -26,10 +26,11 @@ RUN chsh -s /bin/zsh root
 # oh-my-zsh
 RUN git clone https://github.com/robbyrussell/oh-my-zsh ${HOME}/.oh-my-zsh
 
-WORKDIR ${HOME}
-RUN mkdir ${HOME}/dev
-
 # dotfiles
 RUN ln -s ${HOME}/dev/devenv/dotfiles/zshrc ${HOME}/.zshrc
+RUN ln -s ${HOME}/dev/devenv/dotfiles/tmux.conf ${HOME}/.tmux.conf
+
+RUN mkdir ${HOME}/dev
+WORKDIR ${HOME}/dev
 
 ENTRYPOINT ["tmux", "new"]
