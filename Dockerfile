@@ -7,6 +7,7 @@ RUN apt-get install -y \
       zsh \
       locales \
       procps \
+      gnupg \
       tmux \
       curl \
       git \
@@ -35,5 +36,3 @@ RUN ln -s ${HOME}/dev/devenv/dotfiles/vimrc ${HOME}/.vimrc
 
 RUN mkdir ${HOME}/dev
 WORKDIR ${HOME}/dev
-
-ENTRYPOINT ["tmux", "new"]

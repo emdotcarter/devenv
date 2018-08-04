@@ -1,14 +1,14 @@
 ID ?= 0
 
+build:
+	docker build . -f Dockerfile -t mdotcarter/devenv:latest
+	docker build . -f Dockerfile-mongodb -t mdotcarter/devenv:latestmongodb
+
 run:
-	docker run -itd \
-		--name=devenv-$(ID) \
-		-v=$$HOME/.ssh/id_rsa_github_emdotcarter:/root/.ssh/id_rsa_github_emdotcarter \
-		-v=$$PWD:/root/dev/devenv \
-		emdotcarter/devenv \
-		|| docker start devenv-$(ID)
-	docker attach --detach-keys=ctrl-a,d devenv-$(ID) || true
-	docker ps
+	$(call runContainer,)
+
+mongodb:
+	$(call runContainer,$@,-)
 
 stop:
 	docker stop $$(docker ps -aq)
@@ -16,5 +16,16 @@ stop:
 clean:
 	docker rm $$(docker ps -aq)
 
-build:
-	docker build . -f Dockerfile -t emdotcarter/devenv
+define runContainer
+	docker network create devenv || true
+	docker run -d -i -t \
+		--name="devenv$(2)$(1)-$(ID)" \
+		--network="devenv" \
+		-v="$$HOME/.ssh/id_rsa_ghbb:/root/.ssh/id_rsa_ghbb" \
+		-v="$$PWD:/root/dev/devenv" \
+		mdotcarter/devenv:latest$(1) \
+		|| docker start devenv$(2)$(1)-$(ID)
+		docker ps
+		docker attach --detach-keys="ctrl-a,d" devenv$(2)$(1)-$(ID) || true
+		docker ps
+endef
