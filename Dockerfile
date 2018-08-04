@@ -36,3 +36,5 @@ RUN ln -s ${HOME}/dev/devenv/dotfiles/vimrc ${HOME}/.vimrc
 
 RUN mkdir ${HOME}/dev
 WORKDIR ${HOME}/dev
+
+ENTRYPOINT ["tmux", "new"]
