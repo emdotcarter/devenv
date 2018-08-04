@@ -1,0 +1,56 @@
+set nocompatible
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'flazz/vim-colorschemes'
+
+call plug#end()
+
+syntax on
+set hidden
+set number
+set ruler
+set hlsearch
+set showmatch
+set incsearch
+set background=dark
+set backspace=indent,eol,start
+set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+set ignorecase
+set smartcase
+set scrolloff=5
+set dir=/tmp//
+
+colorscheme dracula
+
+" Highlight/Clear trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
+
+map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
+
+" TComment
+map <silent> <LocalLeader>cc :TComment<CR>
+map <silent> <LocalLeader>uc :TComment<CR>
+
+" FZF
+map <silent> <leader>ff :Files<CR>
+
+let $FZF_DEFAULT_COMMAND = 'find * -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/"'
+let $FZF_DEFAULT_OPTS = '--reverse'
+let g:fzf_tags_command = 'ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj'
+let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \'ctrl-x': 'split',
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'  }

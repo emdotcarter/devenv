@@ -6,6 +6,7 @@ RUN apt-get update
 RUN apt-get install -y \
       zsh \
       locales \
+      procps \
       tmux \
       curl \
       git \
@@ -30,6 +31,7 @@ RUN git clone https://github.com/robbyrussell/oh-my-zsh ${HOME}/.oh-my-zsh
 RUN ln -s ${HOME}/dev/devenv/dotfiles/zshrc ${HOME}/.zshrc
 RUN ln -s ${HOME}/dev/devenv/dotfiles/tmux.conf ${HOME}/.tmux.conf
 RUN ln -s ${HOME}/dev/devenv/dotfiles/gitconfig ${HOME}/.gitconfig
+RUN ln -s ${HOME}/dev/devenv/dotfiles/vimrc ${HOME}/.vimrc
 
 RUN mkdir ${HOME}/dev
 WORKDIR ${HOME}/dev
