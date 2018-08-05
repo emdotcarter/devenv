@@ -28,7 +28,7 @@ set smartcase
 set scrolloff=5
 set dir=/tmp//
 
-colorscheme dracula
+colorscheme visualstudio
 
 " Highlight/Clear trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
