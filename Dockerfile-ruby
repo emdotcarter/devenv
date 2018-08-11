@@ -11,5 +11,5 @@ RUN usermod -a -G rvm root
 RUN . /etc/profile.d/rvm.sh
 
 RUN /bin/bash -l -c "rvm --default install ruby-2.5.1"
-RUN /bin/bash -l -c "gem install bundler --version=1.16.5"
+RUN /bin/bash -l -c "gem install bundler --version=1.16.3"
 RUN /bin/bash -l -c "gem install rails --version=5.2.1"
