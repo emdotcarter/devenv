@@ -2,16 +2,18 @@ ID ?= 0
 
 PORT- = 3000
 PORT-js = 3001
+PORT-ruby = 3002
 
 build:
 	docker build . -f Dockerfile -t mdotcarter/devenv:latest
 	docker build . -f Dockerfile-js -t mdotcarter/devenv:latestjs
+	docker build . -f Dockerfile-ruby -t mdotcarter/devenv:latestruby
 	docker build . -f Dockerfile-mongodb -t mdotcarter/devenv:latestmongodb
 
 run:
 	$(call runDevEnv,)
 
-js:
+js ruby:
 	$(call runDevEnv,$@,-)
 
 mongodb:
