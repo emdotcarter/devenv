@@ -25,6 +25,12 @@ stop:
 clean:
 	docker rm $$(docker ps -aq)
 
+nuclear:
+	docker stop $$(docker ps -aq)
+	docker rm $$(docker ps -aq)
+	docker rmi -f $$(docker images -aq)
+
+
 define runDevEnv
 	docker network create devenv || true
 	docker run -d -i -t \
