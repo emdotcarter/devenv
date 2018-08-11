@@ -9,6 +9,7 @@ build:
 	docker build . -f Dockerfile-js -t mdotcarter/devenv:latestjs
 	docker build . -f Dockerfile-ruby -t mdotcarter/devenv:latestruby
 	docker build . -f Dockerfile-mongodb -t mdotcarter/devenv:latestmongodb
+	docker build . -f Dockerfile-postgres -t mdotcarter/devenv:latestpostgres
 
 run:
 	$(call runDevEnv,)
@@ -16,7 +17,7 @@ run:
 js ruby:
 	$(call runDevEnv,$@,-)
 
-mongodb:
+mongodb postgres:
 	$(call runDb,$@,-)
 
 stop:
