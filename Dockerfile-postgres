@@ -1,1 +1,3 @@
-FROM postgres:10.5
+FROM postgres:10
+
+ENV POSTGRES_PASSWORD=password
