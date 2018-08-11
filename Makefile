@@ -1,5 +1,8 @@
 ID ?= 0
 
+PORT- = 3000
+PORT-js = 3001
+
 build:
 	docker build . -f Dockerfile -t mdotcarter/devenv:latest
 	docker build . -f Dockerfile-js -t mdotcarter/devenv:latestjs
@@ -27,6 +30,7 @@ define runDevEnv
 		--network="devenv" \
 		-v="$$HOME/.ssh/id_rsa_ghbb:/root/.ssh/id_rsa_ghbb" \
 		-v="$$PWD:/root/dev/devenv" \
+		-p $(PORT-$(1)):$(PORT-$(1)) \
 		mdotcarter/devenv:latest$(1) \
 		|| docker start devenv$(2)$(1)-$(ID)
 		docker ps
