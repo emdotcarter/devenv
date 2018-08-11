@@ -2,7 +2,3 @@ FROM mdotcarter/devenv
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x > /tmp/setup_10.x
 RUN . /tmp/setup_10.x
-RUN apt-get install -y \
-      build-essential \
-      nodejs
-
