@@ -28,6 +28,9 @@ RUN chsh -s /bin/zsh root
 # oh-my-zsh
 RUN git clone https://github.com/robbyrussell/oh-my-zsh ${HOME}/.oh-my-zsh
 
+# fix permissions on diff-highlight
+RUN chmod 544 /usr/share/doc/git/contrib/diff-highlight/diff-highlight
+
 # dotfiles
 RUN ln -s ${HOME}/dev/devenv/dotfiles/zshrc ${HOME}/.zshrc
 RUN ln -s ${HOME}/dev/devenv/dotfiles/tmux.conf ${HOME}/.tmux.conf

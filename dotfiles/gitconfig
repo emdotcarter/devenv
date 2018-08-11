@@ -19,8 +19,8 @@
   autocrlf = input
   excludesfile = ~/.gitignore
 [pager]
-  log = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
-  show = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
-  diff = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+  log = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+  show = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+  diff = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
 [grep]
   lineNumber = true
