@@ -2,10 +2,10 @@ set nocompatible
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+  autocmd VimEnter * silent! PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+silent! call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -28,7 +28,7 @@ set smartcase
 set scrolloff=5
 set dir=/tmp//
 
-colorscheme visualstudio
+silent! colorscheme visualstudio
 
 " Highlight/Clear trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -51,6 +51,6 @@ let $FZF_DEFAULT_OPTS = '--reverse'
 let g:fzf_tags_command = 'ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj'
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
-      \'ctrl-x': 'split',
+      \ 'ctrl-x': 'split',
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'  }
