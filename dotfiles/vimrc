@@ -38,6 +38,13 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
 
+function! Trim()
+  %s/\s*$//
+  ''
+endfunction
+command! -nargs=0 Trim :call Trim()
+nnoremap <silent> <Leader>cw :Trim<CR>
+
 map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
 
 " TComment
