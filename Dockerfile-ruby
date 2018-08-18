@@ -3,8 +3,18 @@ FROM mdotcarter/devenv
 RUN apt-get install -y \
       build-essential \
       nodejs \
-      libpq-dev
+      wget
 
+# postgres 10 client
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" >> /etc/apt/sources.list.d/pgdg.list
+RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | apt-key add -
+
+RUN apt-get update
+RUN apt-get install -y \
+      libpq-dev \
+      postgresql-client-10
+
+# rvm
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 
 RUN curl -sSL https://get.rvm.io | bash -s stable
