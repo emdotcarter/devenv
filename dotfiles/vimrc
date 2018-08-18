@@ -10,6 +10,7 @@ silent! call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'tomtom/tcomment_vim'
 
 call plug#end()
 
