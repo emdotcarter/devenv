@@ -11,6 +11,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'tomtom/tcomment_vim'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-endwise'
 
 call plug#end()
 
@@ -28,6 +31,10 @@ set ignorecase
 set smartcase
 set scrolloff=5
 set dir=/tmp//
+
+filetype on
+filetype indent on
+filetype plugin on
 
 silent! colorscheme visualstudio
 
@@ -64,3 +71,8 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit'  }
 
 set grepprg=grep\ -InRi\ $*\ .
+
+" NERDTree
+map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
+map <silent> <LocalLeader>nr :NERDTree<CR>
+map <silent> <LocalLeader>nf :NERDTreeFind<CR>
