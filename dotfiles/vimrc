@@ -36,7 +36,7 @@ filetype on
 filetype indent on
 filetype plugin on
 
-silent! colorscheme visualstudio
+silent! colorscheme xian
 
 " Highlight/Clear trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
