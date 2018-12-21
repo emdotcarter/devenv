@@ -1,4 +1,4 @@
 FROM mdotcarter/devenv
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x > /tmp/setup_10.x
-RUN . /tmp/setup_10.x
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+RUN sudo apt-get install -y nodejs
