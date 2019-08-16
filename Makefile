@@ -10,19 +10,19 @@ PORT-python = 3003
 build-base:
 	$(call buildDockerfile)
 
-build-js:
+build-js: build-base
 	$(call buildDockerfile,js,-)
 
-build-ruby:
+build-ruby: build-base
 	$(call buildDockerfile,ruby,-)
 
-build-python:
+build-python: build-base
 	$(call buildDockerfile,python,-)
 
-build-mongodb:
+build-mongodb: build-base
 	$(call buildDockerfile,mongodb,-)
 
-build-postgres:
+build-postgres: build-base
 	$(call buildDockerfile,postgres,-)
 
 build-all: build-js build-ruby build-python build-mongodb build-postgres
