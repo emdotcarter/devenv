@@ -8,8 +8,6 @@ plugins=(git ssh-agent zsh-256color)
 ZSH_THEME=blinks
 zstyle :omz:plugins:ssh-agent identities id_rsa_ghbb
 
-$(git clone https://github.com/chrissicool/zsh-256color ${ZSH}/plugins/zsh-256color)
-
 source ${ZSH}/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

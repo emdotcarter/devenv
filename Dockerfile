@@ -53,6 +53,7 @@ RUN mkdir -p ${DEVENV}
 RUN git clone https://github.com/robbyrussell/oh-my-zsh ${HOME}/.oh-my-zsh
 
 # dotfiles
+RUN ln -s ${DOTFILES}/zprofile ${HOME}/.zprofile
 RUN ln -s ${DOTFILES}/zshrc ${HOME}/.zshrc
 RUN ln -s ${DOTFILES}/tmux.conf ${HOME}/.tmux.conf
 RUN ln -s ${DOTFILES}/gitconfig ${HOME}/.gitconfig

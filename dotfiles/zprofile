@@ -1,0 +1,1 @@
+$(git clone https://github.com/chrissicool/zsh-256color ${ZSH}/plugins/zsh-256color)
