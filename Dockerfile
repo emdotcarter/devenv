@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-RUN apt-get update && apt-get install -y sudo
+RUN apt-get update --fix-missing && apt-get install -y sudo
 
 ARG USER=mcarter
 RUN adduser --home /home/${USER} --disabled-password --gecos GECOS ${USER} \
@@ -16,7 +16,7 @@ ENV HOME=/home/${USER}
 RUN mkdir -p ${HOME}/.ssh
 
 # system
-RUN sudo apt-get update && sudo apt-get install -y \
+RUN sudo apt-get install -y \
       zsh \
       locales \
       procps \
@@ -43,12 +43,11 @@ RUN sudo chsh -s /bin/zsh ${USER}
 RUN sudo chmod 555 /usr/share/doc/git/contrib/diff-highlight/diff-highlight
 
 ENV DEV=${HOME}/dev
-ENV DEVENV=${HOME}/dev/devenv
+ENV DEVENV=${DEV}/devenv
 ENV DOTFILES=${DEVENV}/dotfiles
 
 RUN mkdir -p ${DEV}
 RUN mkdir -p ${DEVENV}
-RUN mkdir -p ${DOTFILES}
 
 # oh-my-zsh
 RUN git clone https://github.com/robbyrussell/oh-my-zsh ${HOME}/.oh-my-zsh

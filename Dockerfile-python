@@ -1,26 +1,5 @@
 FROM mdotcarter/devenv
 
-# python3.7
-# RUN sudo apt-get update && sudo apt-get install -y \
-  #       build-essential \
-  #       zlib1g-dev \
-  #       libncurses5-dev \
-  #       libgdbm-dev \
-  #       libnss3-dev \
-  #       libssl-dev \
-  #       libreadline-dev \
-  #       libffi-dev \
-  #       wget
-#
-# RUN sudo apt-get autoremove -y \
-  #     && sudo apt-get clean -y
-#
-# RUN sudo wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz -P /usr/src
-# RUN sudo tar -xzf /usr/src/Python-3.7.3.tgz -C /usr/src
-# RUN (cd /usr/src/Python-3.7.3 && sudo ./configure --enable-optimizations --with-ensurepip=install)
-# RUN sudo make -j8 -C /usr/src/Python-3.7.3
-# RUN sudo make altinstall -C /usr/src/Python-3.7.3
-
 # Anaconda
 ENV PATH /opt/conda/bin:${PATH}
 

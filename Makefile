@@ -3,38 +3,55 @@ ID ?= 0
 PORT = 3000
 PORT-js = 3001
 PORT-ruby = 3002
-PORT-go = 3003
-PORT-python = 3004
+PORT-python = 3003
 
-build:
-	docker build . -f Dockerfile -t mdotcarter/devenv:latest
-	# docker build . -f Dockerfile-js -t mdotcarter/devenv:latestjs
-	# docker build . -f Dockerfile-ruby -t mdotcarter/devenv:latestruby
-	# docker build . -f Dockerfile-go -t mdotcarter/devenv:latestgo
-	docker build . -f Dockerfile-python -t mdotcarter/devenv:latestpython
-	# docker build . -f Dockerfile-mongodb -t mdotcarter/devenv:latestmongodb
-	# docker build . -f Dockerfile-postgres -t mdotcarter/devenv:latestpostgres
+.PHONY: build-base build-js build-ruby build-python build-mongodb build-postgres build-all stop clean
 
-run:
+build-base:
+	$(call buildDockerfile)
+
+build-js:
+	$(call buildDockerfile,js,-)
+
+build-ruby:
+	$(call buildDockerfile,ruby,-)
+
+build-python:
+	$(call buildDockerfile,python,-)
+
+build-mongodb:
+	$(call buildDockerfile,mongodb,-)
+
+build-postgres:
+	$(call buildDockerfile,postgres,-)
+
+build-all: build-js build-ruby build-python build-mongodb build-postgres
+
+base:
+	$(MAKE) build-base
 	$(call runDevEnv,)
 
-js ruby go python:
+js ruby python:
+	$(MAKE) build-$@
 	$(call runDevEnv,$@,-)
 
 mongodb postgres:
+	$(MAKE) build-$@
 	$(call runDb,$@,-)
 
 stop:
 	docker stop $$(docker ps -aq)
 
 clean:
-	docker rm $$(docker ps -aq)
+	$(MAKE) stop && docker rm -f $$(docker ps -aq)
 
 nuclear:
-	docker stop $$(docker ps -aq)
-	docker rm $$(docker ps -aq)
-	docker rmi -f $$(docker images -aq)
+	-docker rm -f $$(docker ps -aq)
+	-docker rmi -f $$(docker images -aq)
 
+define buildDockerfile
+	docker build . -f Dockerfile$(2)$(1) -t mdotcarter/devenv:latest$(1)
+endef
 
 define runDevEnv
 	docker network create devenv || true
