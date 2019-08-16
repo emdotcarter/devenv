@@ -1,5 +1,7 @@
 # oh-my-zsh
 export ZSH=${HOME}/.oh-my-zsh
+export TERM=xterm
+export EDITOR=vim
 
 plugins=(git ssh-agent zsh-256color)
 
@@ -11,5 +13,3 @@ $(git clone https://github.com/chrissicool/zsh-256color ${ZSH}/plugins/zsh-256co
 source ${ZSH}/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export EDITOR=vim

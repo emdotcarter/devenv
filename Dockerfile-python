@@ -1,0 +1,41 @@
+FROM mdotcarter/devenv
+
+# python3.7
+# RUN sudo apt-get update && sudo apt-get install -y \
+  #       build-essential \
+  #       zlib1g-dev \
+  #       libncurses5-dev \
+  #       libgdbm-dev \
+  #       libnss3-dev \
+  #       libssl-dev \
+  #       libreadline-dev \
+  #       libffi-dev \
+  #       wget
+#
+# RUN sudo apt-get autoremove -y \
+  #     && sudo apt-get clean -y
+#
+# RUN sudo wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz -P /usr/src
+# RUN sudo tar -xzf /usr/src/Python-3.7.3.tgz -C /usr/src
+# RUN (cd /usr/src/Python-3.7.3 && sudo ./configure --enable-optimizations --with-ensurepip=install)
+# RUN sudo make -j8 -C /usr/src/Python-3.7.3
+# RUN sudo make altinstall -C /usr/src/Python-3.7.3
+
+# Anaconda
+ENV PATH /opt/conda/bin:${PATH}
+
+RUN sudo apt-get update --fix-missing && sudo apt-get install -y \
+      wget \
+      bzip2 \
+      ca-certificates \
+      libglib2.0-0 \
+      libxext6 \
+      libsm6 \
+      libxrender1
+
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O ~/anaconda.sh && \
+      sudo /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+      rm ~/anaconda.sh && \
+      sudo ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+      echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+      echo "conda activate base" >> ~/.bashrc
