@@ -1,47 +1,66 @@
 ID ?= 0
 
-PORT- = 3000
+PORT = 3000
 PORT-js = 3001
 PORT-ruby = 3002
-PORT-go = 3003
+PORT-python = 3003
 
-build:
-	docker build . -f Dockerfile -t mdotcarter/devenv:latest
-	docker build . -f Dockerfile-js -t mdotcarter/devenv:latestjs
-	docker build . -f Dockerfile-ruby -t mdotcarter/devenv:latestruby
-	docker build . -f Dockerfile-go -t mdotcarter/devenv:latestgo
-	docker build . -f Dockerfile-mongodb -t mdotcarter/devenv:latestmongodb
-	docker build . -f Dockerfile-postgres -t mdotcarter/devenv:latestpostgres
+.PHONY: build-base build-js build-ruby build-python build-mongodb build-postgres build-all stop clean
 
-run:
+build-base:
+	$(call buildDockerfile)
+
+build-js: build-base
+	$(call buildDockerfile,js,-)
+
+build-ruby: build-base
+	$(call buildDockerfile,ruby,-)
+
+build-python: build-base
+	$(call buildDockerfile,python,-)
+
+build-mongodb: build-base
+	$(call buildDockerfile,mongodb,-)
+
+build-postgres: build-base
+	$(call buildDockerfile,postgres,-)
+
+build-all: build-js build-ruby build-python build-mongodb build-postgres
+
+base:
+	$(MAKE) build-base
 	$(call runDevEnv,)
 
-js ruby go:
+js ruby python:
+	$(MAKE) build-$@
 	$(call runDevEnv,$@,-)
 
 mongodb postgres:
+	$(MAKE) build-$@
 	$(call runDb,$@,-)
 
 stop:
 	docker stop $$(docker ps -aq)
 
 clean:
-	docker rm $$(docker ps -aq)
+	$(MAKE) stop && docker rm -f $$(docker ps -aq)
 
 nuclear:
-	docker stop $$(docker ps -aq)
-	docker rm $$(docker ps -aq)
-	docker rmi -f $$(docker images -aq)
+	-docker rm -f $$(docker ps -aq)
+	-docker rmi -f $$(docker images -aq)
 
+define buildDockerfile
+	docker build . -f Dockerfile$(2)$(1) -t mdotcarter/devenv:latest$(1)
+endef
 
 define runDevEnv
 	docker network create devenv || true
 	docker run -d -i -t \
 		--name="devenv$(2)$(1)-$(ID)" \
 		--network="devenv" \
-		-v="$$HOME/.ssh/id_rsa_ghbb:/root/.ssh/id_rsa_ghbb" \
-		-v="$$PWD:/root/dev/devenv" \
-		-p $(PORT-$(1)):$(PORT-$(1)) \
+		-v="$$HOME/.ssh/id_rsa_ghbb:/home/mcarter/.ssh/id_rsa_ghbb" \
+		-v="$$PWD:/home/mcarter/dev/devenv" \
+		-p $(PORT$(2)$(1)):$(PORT$(2)$(1)) \
 		mdotcarter/devenv:latest$(1) \
 		|| docker start devenv$(2)$(1)-$(ID)
 		docker ps
@@ -54,8 +73,8 @@ define runDb
 	docker run -d -i -t \
 		--name="devenv$(2)$(1)-$(ID)" \
 		--network="devenv" \
-		-v="$$HOME/.ssh/id_rsa_ghbb:/root/.ssh/id_rsa_ghbb" \
-		-v="$$PWD:/root/dev/devenv" \
+		-v="$$HOME/.ssh/id_rsa_ghbb:/home/mcarter/.ssh/id_rsa_ghbb" \
+		-v="$$PWD:/home/mcarter/dev/devenv" \
 		mdotcarter/devenv:latest$(1) \
 		|| docker start devenv$(2)$(1)-$(ID)
 		docker ps

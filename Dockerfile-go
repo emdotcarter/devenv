@@ -1,4 +1,0 @@
-FROM mdotcarter/devenv
-
-# golang
-RUN curl https://dl.google.com/go/go1.11.4.linux-amd64.tar.gz | tar xz -C ${LOCAL}/bin
