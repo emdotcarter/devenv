@@ -19,7 +19,3 @@ RUN sudo gpg --batch --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275
 RUN curl -sSL https://get.rvm.io | sudo bash -s stable
 RUN sudo usermod -a -G rvm ${USER}
 RUN . /etc/profile.d/rvm.sh
-
-RUN /bin/bash -l -c "rvm --default install ruby-2.5.1"
-RUN /bin/bash -l -c "gem install bundler --version=1.16.3"
-RUN /bin/bash -l -c "gem install rails --version=5.2.1"
