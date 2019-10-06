@@ -65,6 +65,8 @@ define runDevEnv
 		-v="$$HOME/.ssh/id_rsa_ghbb:/home/mcarter/.ssh/id_rsa_ghbb" \
 		-v="$$PWD:/home/mcarter/dev/devenv" \
 		-p $(PORT$(2)$(1)):$(PORT$(2)$(1)) \
+		-e DISPLAY=10.0.0.6:0 \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		mdotcarter/devenv:latest$(1) \
 		|| docker start devenv$(2)$(1)-$(ID)
 		docker ps
