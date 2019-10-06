@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 
 RUN apt-get update --fix-missing && apt-get install -y sudo
 
@@ -38,9 +38,6 @@ ENV LC_ALL=en_US.UTF-8
 
 # Set zsh as default
 RUN sudo chsh -s /bin/zsh ${USER}
-
-# fix permissions on diff-highlight
-RUN sudo chmod 555 /usr/share/doc/git/contrib/diff-highlight/diff-highlight
 
 ENV DEV=${HOME}/dev
 ENV DEVENV=${DEV}/devenv
