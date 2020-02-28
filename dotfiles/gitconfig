@@ -9,8 +9,6 @@
   st = status
   oneline = log --pretty=format:\"%h %ad%x20%s%x20%x28%an%x29\" --date=short
   staged = diff --cached
-[alias "push"]
-  please = push --force-with-lease
 [push]
   default = current
 [rebase]
@@ -18,9 +16,5 @@
 [core]
   autocrlf = input
   excludesfile = ~/.gitignore
-[pager]
-  log = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-  show = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-  diff = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
 [grep]
   lineNumber = true
