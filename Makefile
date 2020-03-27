@@ -6,7 +6,7 @@ PORT-ruby = 3002
 PORT-python = 8000
 PORT-java = 3004
 
-.PHONY: build-base build-js build-ruby build-python build-java build-mongodb build-postgres build-all stop clean
+.PHONY: build-base build-js build-ruby build-python build-java build-mongodb build-postgresql build-all stop clean
 
 build-base:
 	$(call buildDockerfile)
@@ -26,10 +26,10 @@ build-java: build-base
 build-mongodb: build-base
 	$(call buildDockerfile,mongodb,-)
 
-build-postgres: build-base
-	$(call buildDockerfile,postgres,-)
+build-postgresql: build-base
+	$(call buildDockerfile,postgresql,-)
 
-build-all: build-js build-ruby build-python build-java build-mongodb build-postgres
+build-all: build-js build-ruby build-python build-java build-mongodb build-postgresql
 
 base:
 	$(MAKE) build-base
@@ -39,7 +39,7 @@ js ruby python java:
 	$(MAKE) build-$@
 	$(call runDevEnv,$@,-)
 
-mongodb postgres:
+mongodb postgresql:
 	$(MAKE) build-$@
 	$(call runDb,$@,-)
 
