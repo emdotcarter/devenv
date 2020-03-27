@@ -3,7 +3,7 @@ ID ?= 0
 PORT = 3000
 PORT-js = 3001
 PORT-ruby = 3002
-PORT-python = 3003
+PORT-python = 8000
 PORT-java = 3004
 
 .PHONY: build-base build-js build-ruby build-python build-java build-mongodb build-postgres build-all stop clean
