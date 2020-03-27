@@ -26,7 +26,8 @@ RUN sudo apt-get update && sudo apt-get install -y \
       wget \
       git \
       vim \
-      lsb-release
+      lsb-release \
+      build-essential
 
 RUN sudo apt-get autoremove -y \
     && sudo apt-get clean -y
@@ -56,7 +57,8 @@ RUN sudo sh -c 'wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - 
 RUN sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 
 RUN sudo apt-get update && sudo apt-get install -y \
-      postgresql-client-12
+      postgresql-client-12 \
+      postgresql-server-dev-12
 
 # dotfiles
 RUN ln -s ${DOTFILES}/zshrc ${HOME}/.zshrc
