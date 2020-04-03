@@ -1,2 +1,2 @@
-eval `ssh-agent -s`
-ssh-add
+source ~/.ssh/ssh_agent_init.sh
+sagent > /dev/null
