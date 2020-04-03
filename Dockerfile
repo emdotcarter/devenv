@@ -71,4 +71,4 @@ RUN KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/ma
 
 WORKDIR ${DEV}
 
-ENTRYPOINT ["tmux", "new", "/bin/zsh --login"]
+ENTRYPOINT ["tmux", "new"]
