@@ -8,6 +8,18 @@ PORT-java = 3004
 
 .PHONY: build-base build-js build-ruby build-python build-java build-mongodb build-postgresql build-all stop clean
 
+base:
+	$(MAKE) build-base
+	$(call runDevEnv,)
+
+js ruby python java:
+	$(MAKE) build-$@
+	$(call runDevEnv,$@,-)
+
+mongodb postgresql:
+	$(MAKE) build-$@
+	$(call runDb,$@,-)
+
 build-base:
 	$(call buildDockerfile)
 
@@ -30,18 +42,6 @@ build-postgresql: build-base
 	$(call buildDockerfile,postgresql,-)
 
 build-all: build-js build-ruby build-python build-java build-mongodb build-postgresql
-
-base:
-	$(MAKE) build-base
-	$(call runDevEnv,)
-
-js ruby python java:
-	$(MAKE) build-$@
-	$(call runDevEnv,$@,-)
-
-mongodb postgresql:
-	$(MAKE) build-$@
-	$(call runDb,$@,-)
 
 stop:
 	docker stop $$(docker ps -aq)
