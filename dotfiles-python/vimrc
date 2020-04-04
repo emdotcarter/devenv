@@ -28,6 +28,7 @@ set incsearch
 set hlsearch
 set expandtab
 set showmatch
+set encoding=utf-8
 set background=dark
 set backspace=indent,eol,start
 set scrolloff=5
