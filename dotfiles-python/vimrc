@@ -11,5 +11,37 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'dense-analysis/ale'
 
 call plug#end()
+
+set hidden
+set number
+set ruler
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set expandtab
+set showmatch
+set background=dark
+set backspace=indent,eol,start
+set scrolloff=5
+
+colorscheme desert
+
+nnoremap j gj
+nnoremap k gk
+
+" NERDTree
+map <silent> <leader>nt :NERDTreeToggle<CR>
+map <silent> <leader>nr :NERDTree<CR>
+map <silent> <leader>nf :NERDTreeFind<CR>
+
+" fzf
+map <silent> <leader>ff :Files<CR>
+map <silent> <leader>fb :Buffers<CR>
