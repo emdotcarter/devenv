@@ -31,13 +31,15 @@ set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 set ignorecase
 set smartcase
 set scrolloff=5
-set dir=/tmp//
+
+set backupdir=/tmp//
+set directory=/tmp//
 
 filetype on
 filetype indent on
 filetype plugin on
 
-silent! colorscheme xian
+colorscheme desert
 
 " Highlight/Clear trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red

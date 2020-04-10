@@ -1,2 +1,2 @@
-source ~/.ssh/ssh_agent_init.sh
+source ~/.ssh/ssh_agent_init.sh > /dev/null
 sagent > /dev/null

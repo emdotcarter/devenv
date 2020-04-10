@@ -19,6 +19,7 @@ Plug 'dense-analysis/ale'
 
 call plug#end()
 
+syntax on
 set hidden
 set number
 set ruler
@@ -35,6 +36,11 @@ set scrolloff=5
 
 set backupdir=/tmp//
 set directory=/tmp//
+
+filetype plugin indent on
+
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
 
 colorscheme desert
 
