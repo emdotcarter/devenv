@@ -53,6 +53,10 @@ map <silent> <leader>nt :NERDTreeToggle<CR>
 map <silent> <leader>nr :NERDTree<CR>
 map <silent> <leader>nf :NERDTreeFind<CR>
 
+" NERDCommenter
+map <silent> <leader>c<space <plug>NERDCommenterComment
+map <silent> <leader>cc <plug>NERDCommenterToggle
+
 " fzf
 map <silent> <leader>ff :Files<CR>
 map <silent> <leader>fb :Buffers<CR>
