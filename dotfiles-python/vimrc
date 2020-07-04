@@ -1,0 +1,62 @@
+set nocompatible
+
+" vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'dense-analysis/ale'
+
+call plug#end()
+
+syntax on
+set hidden
+set number
+set ruler
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set expandtab
+set showmatch
+set encoding=utf-8
+set background=dark
+set backspace=indent,eol,start
+set scrolloff=5
+
+set backupdir=/tmp//
+set directory=/tmp//
+
+filetype plugin indent on
+
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype htmldjango setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+
+colorscheme desert
+
+nnoremap j gj
+nnoremap k gk
+
+" NERDTree
+map <silent> <leader>nt :NERDTreeToggle<CR>
+map <silent> <leader>nr :NERDTree<CR>
+map <silent> <leader>nf :NERDTreeFind<CR>
+
+" NERDCommenter
+map <silent> <leader>c<space <plug>NERDCommenterComment
+map <silent> <leader>cc <plug>NERDCommenterToggle
+
+" fzf
+map <silent> <leader>ff :Files<CR>
+map <silent> <leader>fb :Buffers<CR>
