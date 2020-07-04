@@ -1,11 +1,6 @@
 ID ?= 0
 
-PORT = 3000
-PORT-js = 3001
-PORT-ruby = 3002
-PORT-python = 8000
-PORT-java = 3004
-PORT-anaconda = 3005
+PORT-FORWARDS-python = -p 3000:3000 -p 8000:8000
 
 .PHONY: build-base build-js build-ruby build-python build-anaconda build-java build-mongodb build-postgresql build-all stop clean
 
@@ -68,7 +63,7 @@ define runDevEnv
 		--network="devenv" \
 		-v="$$HOME/.ssh/id_rsa:/home/mcarter/.ssh/id_rsa" \
 		-v="$$PWD:/home/mcarter/dev/devenv" \
-		-p $(PORT$(2)$(1)):$(PORT$(2)$(1)) \
+		$(PORT-FORWARDS$(2)$(1)) \
 		-e DISPLAY=10.0.0.6:0 \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		mdotcarter/devenv:latest$(1) \

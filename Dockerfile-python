@@ -1,7 +1,11 @@
 FROM mdotcarter/devenv
 
+# NodeJS (for React)
+RUN sudo sh -c 'curl -sL https://deb.nodesource.com/setup_12.x | bash -'
+
 RUN sudo apt-get update && sudo apt-get install -y \
-    python3-pip
+    python3-pip \
+    nodejs
 
 # dotfile overrides
 RUN ln -sf ${DEVENV}/dotfiles-python/zshrc ${HOME}/.zshrc
