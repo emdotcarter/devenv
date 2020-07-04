@@ -3,16 +3,16 @@ ID ?= 0
 PORT = 3000
 PORT-js = 3001
 PORT-ruby = 3002
-PORT-python = 8000
+PORT-anaconda = 8000
 PORT-java = 3004
 
-.PHONY: build-base build-js build-ruby build-python build-java build-mongodb build-postgresql build-all stop clean
+.PHONY: build-base build-js build-ruby build-anaconda build-java build-mongodb build-postgresql build-all stop clean
 
 base:
 	$(MAKE) build-base
 	$(call runDevEnv,)
 
-js ruby python java:
+js ruby anaconda java:
 	$(MAKE) build-$@
 	$(call runDevEnv,$@,-)
 
@@ -29,8 +29,8 @@ build-js: build-base
 build-ruby: build-base
 	$(call buildDockerfile,ruby,-)
 
-build-python: build-base
-	$(call buildDockerfile,python,-)
+build-anaconda: build-base
+	$(call buildDockerfile,anaconda,-)
 
 build-java: build-base
 	$(call buildDockerfile,java,-)
@@ -41,7 +41,7 @@ build-mongodb: build-base
 build-postgresql: build-base
 	$(call buildDockerfile,postgresql,-)
 
-build-all: build-js build-ruby build-python build-java build-mongodb build-postgresql
+build-all: build-js build-ruby build-anaconda build-java build-mongodb build-postgresql
 
 stop:
 	docker stop $$(docker ps -aq)

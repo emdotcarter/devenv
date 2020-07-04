@@ -12,18 +12,21 @@ RUN sudo apt-get update && sudo apt-get install -y \
 # Anaconda
 RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O /tmp/anaconda.sh
 RUN chmod a+rx /tmp/anaconda.sh && \
-      /bin/bash -c 'sudo /tmp/anaconda.sh -b -p /opt/conda' && \
+      /bin/bash -c '/tmp/anaconda.sh -b -p ${HOME}/conda' && \
       rm /tmp/anaconda.sh
 
 # fix Anaconda blowing away TERM search directories
 RUN sudo rmdir /usr/share/terminfo
-RUN sudo ln -s /opt/conda/share/terminfo /usr/share/terminfo
+RUN sudo ln -s ${HOME}/conda/share/terminfo /usr/share/terminfo
+
+# install pipenv
+RUN python -m pip install --user pipenv
 
 # django web framework
-RUN sudo /opt/conda/bin/python -m pip install Django
+# RUN sudo /opt/conda/bin/python -m pip install Django
 
 # postgresql driver
-RUN sudo /opt/conda/bin/python -m pip install psycopg2
+# RUN sudo /opt/conda/bin/python -m pip install psycopg2
 
 # dotfile overrides
 RUN ln -sf ${DEVENV}/dotfiles-python/zshrc ${HOME}/.zshrc
