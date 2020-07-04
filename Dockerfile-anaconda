@@ -19,15 +19,6 @@ RUN chmod a+rx /tmp/anaconda.sh && \
 RUN sudo rmdir /usr/share/terminfo
 RUN sudo ln -s ${HOME}/conda/share/terminfo /usr/share/terminfo
 
-# install pipenv
-RUN python -m pip install --user pipenv
-
-# django web framework
-# RUN sudo /opt/conda/bin/python -m pip install Django
-
-# postgresql driver
-# RUN sudo /opt/conda/bin/python -m pip install psycopg2
-
 # dotfile overrides
-RUN ln -sf ${DEVENV}/dotfiles-python/zshrc ${HOME}/.zshrc
-RUN ln -sf ${DEVENV}/dotfiles-python/vimrc ${HOME}/.vimrc
+RUN ln -sf ${DEVENV}/dotfiles-anaconda/zshrc ${HOME}/.zshrc
+RUN ln -sf ${DEVENV}/dotfiles-anaconda/vimrc ${HOME}/.vimrc
