@@ -12,9 +12,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-rails'
 
 call plug#end()
 

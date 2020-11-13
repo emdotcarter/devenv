@@ -8,7 +8,6 @@ RUN sudo apt-get update && sudo apt-get install -y \
     nodejs
 
 # dotfile overrides
-RUN ln -sf ${DEVENV}/dotfiles-python/zshrc ${HOME}/.zshrc
 RUN ln -sf ${DEVENV}/dotfiles-python/vimrc ${HOME}/.vimrc
 
 # install pipenv

@@ -48,7 +48,7 @@ stop:
 clean:
 	$(MAKE) stop && docker rm -f $$(docker ps -aq)
 
-nuclear:
+deep-clean:
 	-docker rm -f $$(docker ps -aq)
 	-docker rmi -f $$(docker images -aq)
 
