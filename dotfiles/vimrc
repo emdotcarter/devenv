@@ -1,17 +1,20 @@
 set nocompatible
 
+" vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * silent! PlugInstall --sync | source $MYVIMRC
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 silent! call plug#begin('~/.vim/plugged')
 
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'flazz/vim-colorschemes'
-Plug 'tomtom/tcomment_vim'
-Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -19,24 +22,26 @@ syntax on
 set hidden
 set number
 set ruler
-set hlsearch
-set showmatch
-set incsearch
-set background=dark
-set backspace=indent,eol,start
-set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 set ignorecase
 set smartcase
+set incsearch
+set hlsearch
+set expandtab
+set showmatch
+set encoding=utf-8
+set background=dark
+set backspace=indent,eol,start
 set scrolloff=5
 
 set backupdir=/tmp//
 set directory=/tmp//
 
-filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 
 colorscheme desert
+
+nnoremap j gj
+nnoremap k gk
 
 " Highlight/Clear trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -52,27 +57,20 @@ endfunction
 command! -nargs=0 Trim :call Trim()
 nnoremap <silent> <Leader>cw :Trim<CR>
 
-map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
+" NERDTree
+map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
+map <silent> <LocalLeader>nr :NERDTree<CR>
+map <silent> <LocalLeader>nf :NERDTreeFind<CR>
 
-" TComment
-map <silent> <LocalLeader>cc :TComment<CR>
-map <silent> <LocalLeader>uc :TComment<CR>
+" NERDCommenter
+map <silent> <leader>c<space <plug>NERDCommenterComment
+map <silent> <leader>cc <plug>NERDCommenterToggle
 
-" FZF
+" fzf
 map <silent> <leader>ff :Files<CR>
-
-let $FZF_DEFAULT_COMMAND = 'find * -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/"'
-let $FZF_DEFAULT_OPTS = '--reverse'
-let g:fzf_tags_command = 'ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj'
+map <silent> <leader>fb :Buffers<CR>
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-x': 'split',
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'  }
-
-set grepprg=grep\ -InRi\ $*\ .
-
-" NERDTree
-map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
-map <silent> <LocalLeader>nr :NERDTree<CR>
-map <silent> <LocalLeader>nf :NERDTreeFind<CR>
