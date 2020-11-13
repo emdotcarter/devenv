@@ -1,5 +1,7 @@
 FROM debian:buster
 
+ENV TERM xterm-256color
+
 RUN apt-get update --fix-missing && apt-get install -y sudo
 
 ARG USER=mcarter
