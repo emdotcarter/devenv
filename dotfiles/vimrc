@@ -1,21 +1,29 @@
 set nocompatible
 
 " vim-plug
+let need_vim_plug_install = 0
 if empty(glob('~/.vim/autoload/plug.vim'))
+  let need_vim_plug_install = 1
+
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-silent! call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'gmist/vim-palette'
 
 call plug#end()
+
+if need_vim_plug_install == 1
+  silent! PlugInstall
+  q
+endif
 
 syntax on
 set hidden
@@ -25,19 +33,24 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-set expandtab
 set showmatch
 set encoding=utf-8
 set background=dark
 set backspace=indent,eol,start
 set scrolloff=5
 
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set colorcolumn=110
+set expandtab
+
 set backupdir=/tmp//
 set directory=/tmp//
 
 filetype plugin indent on
 
-colorscheme desert
+silent! colorscheme tigrana-256-dark
 
 nnoremap j gj
 nnoremap k gk
