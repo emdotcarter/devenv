@@ -66,6 +66,9 @@ RUN ln -s ${DOTFILES}/vimrc ${HOME}/.vimrc
 RUN ln -s ${DOTFILES}/ssh/config ${HOME}/.ssh/config
 RUN ln -s ${DOTFILES}/ssh/ssh_agent_init.sh ${HOME}/.ssh/ssh_agent_init.sh
 
+RUN mkdir -p ${HOME}/.vim/colors
+RUN cp ${DOTFILES}/vim_colorschemes/* ${HOME}/.vim/colors
+
 # ohmyzsh
 RUN KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
