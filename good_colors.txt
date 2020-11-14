@@ -1,0 +1,10 @@
+xoria256 8
+tigrana 8
+
+'colorsbox-faff' 7
+'colorsbox-material'
+'colorsbox-greenish'
+'colorsbox-stbright'
+'colorsbox-steighties'
+'colorsbox-stnight'
+'colorsbox-stblue'
