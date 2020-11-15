@@ -62,11 +62,14 @@ RUN sudo apt-get update && sudo apt-get install -y \
 # dotfiles
 RUN ln -s ${DOTFILES}/zprofile ${HOME}/.zprofile
 RUN ln -s ${DOTFILES}/zshrc ${HOME}/.zshrc
+RUN ln -s ${DOTFILES}/ssh/config ${HOME}/.ssh/config
+RUN ln -s ${DOTFILES}/ssh/ssh_agent_init.sh ${HOME}/.ssh/ssh_agent_init.sh
 RUN ln -s ${DOTFILES}/tmux.conf ${HOME}/.tmux.conf
 RUN ln -s ${DOTFILES}/gitconfig ${HOME}/.gitconfig
 RUN ln -s ${DOTFILES}/vimrc ${HOME}/.vimrc
-RUN ln -s ${DOTFILES}/ssh/config ${HOME}/.ssh/config
-RUN ln -s ${DOTFILES}/ssh/ssh_agent_init.sh ${HOME}/.ssh/ssh_agent_init.sh
+
+RUN mkdir -p ${HOME}/.vim
+RUN ln -s ${DOTFILES}/vim/ftplugin ${HOME}/.vim/ftplugin
 
 # ohmyzsh
 RUN KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

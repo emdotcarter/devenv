@@ -1,28 +1,32 @@
 set nocompatible
 
-" vim-plug
-let need_vim_plug_install = 0
+" Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
   let need_vim_plug_install = 1
 
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 call plug#begin('~/.vim/plugged')
 
+" General
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'gmist/vim-palette'
 
+" Python
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'dense-analysis/ale'
+
 call plug#end()
 
-if need_vim_plug_install == 1
-  silent! PlugInstall
-  q
+" Run PlugInstall if there are missing plugins
+if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC | q
 endif
 
 syntax on
@@ -51,6 +55,19 @@ set directory=/tmp//
 filetype plugin indent on
 
 silent! colorscheme tigrana-256-dark
+
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier_eslint'],
+\   'typescript': ['prettier_eslint'],
+\   'css': ['prettier_eslint'],
+\   'python': ['black'],
+\}
+let g:ale_python_auto_pipenv = 1
+let g:ale_fix_on_save = 1
 
 nnoremap j gj
 nnoremap k gk

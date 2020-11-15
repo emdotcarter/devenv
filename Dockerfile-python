@@ -7,8 +7,5 @@ RUN sudo apt-get update && sudo apt-get install -y \
     python3-pip \
     nodejs
 
-# dotfile overrides
-RUN ln -sf ${DEVENV}/dotfiles-python/vimrc ${HOME}/.vimrc
-
 # install pipenv
 RUN pip3 install pipenv --no-warn-script-location
