@@ -56,9 +56,9 @@ filetype plugin indent on
 
 silent! colorscheme tigrana-256-dark
 
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype scss setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 sts=0 expandtab
+autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
