@@ -2,13 +2,13 @@ ID ?= 0
 
 PORT-FORWARDS-python = -p 3000:3000 -p 8000:8000
 
-.PHONY: build-base build-js build-ruby build-python build-anaconda build-java build-mongodb build-postgresql build-all stop clean
+.PHONY: build-base build-js build-ruby build-python build-anaconda build-java build-rust build-mongodb build-postgresql build-all stop clean
 
 base:
 	$(MAKE) build-base
 	$(call runDevEnv,)
 
-js ruby python anaconda java:
+js ruby python anaconda java rust:
 	$(MAKE) build-$@
 	$(call runDevEnv,$@,-)
 
@@ -34,13 +34,16 @@ build-anaconda: build-base
 build-java: build-base
 	$(call buildDockerfile,java,-)
 
+build-rust: build-base
+	$(call buildDockerfile,rust,-)
+
 build-mongodb: build-base
 	$(call buildDockerfile,mongodb,-)
 
 build-postgresql: build-base
 	$(call buildDockerfile,postgresql,-)
 
-build-all: build-js build-ruby build-python build-anaconda build-java build-mongodb build-postgresql
+build-all: build-js build-ruby build-python build-anaconda build-java build-rust build-mongodb build-postgresql
 
 stop:
 	docker stop $$(docker ps -aq)
