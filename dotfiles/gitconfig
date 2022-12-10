@@ -17,3 +17,5 @@
   excludesfile = ~/.gitignore
 [grep]
   lineNumber = true
+[init]
+	defaultBranch = main
