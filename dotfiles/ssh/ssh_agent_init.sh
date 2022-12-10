@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function sshagent_findsockets {
     find /tmp -uid $(id -u) -type s -name agent.\* 2>/dev/null
 }

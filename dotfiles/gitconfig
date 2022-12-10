@@ -7,7 +7,6 @@
   ci = commit -v
   co = checkout
   st = status
-  oneline = log --pretty=format:\"%h %ad%x20%s%x20%x28%an%x29\" --date=short
   staged = diff --cached
 [push]
   default = current
