@@ -16,6 +16,7 @@ RUN sudo apt update && sudo apt install -y \
         libxml2-dev \
         libxmlsec1-dev \
         libffi-dev \
-        liblzma-dev
+        liblzma-dev \
+        libpq-dev
 
 RUN curl https://pyenv.run | bash
