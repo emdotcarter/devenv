@@ -1,11 +1,3 @@
 FROM mdotcarter/devenv
 
-# NodeJS (for React)
-RUN sudo sh -c 'curl -sL https://deb.nodesource.com/setup_12.x | bash -'
-
-RUN sudo apt-get update && sudo apt-get install -y \
-    python3-pip \
-    nodejs
-
-# install pipenv
-RUN pip3 install pipenv --no-warn-script-location
+RUN curl https://pyenv.run | bash
