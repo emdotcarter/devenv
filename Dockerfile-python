@@ -1,7 +1,7 @@
 FROM mdotcarter/devenv
 
 # pyenv recommended build environment
-RUN sudo apt update && sudo apt install \
+RUN sudo apt update && sudo apt install -y \
         build-essential \
         libssl-dev \
         zlib1g-dev \
