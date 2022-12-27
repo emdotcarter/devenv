@@ -17,6 +17,8 @@ RUN sudo apt update && sudo apt install -y \
         libxmlsec1-dev \
         libffi-dev \
         liblzma-dev \
-        libpq-dev
+        libpq-dev \
+        python3-pip \
+        python3-venv
 
 RUN curl https://pyenv.run | bash
