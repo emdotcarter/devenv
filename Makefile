@@ -35,6 +35,7 @@ define runDevEnv
 		-v="$$HOME/.ssh/id_rsa:/home/mcarter/.ssh/id_rsa" \
 		-v="$$PWD:/home/mcarter/dev/devenv" \
 		-p=3000:3000 \
+		-p=3001:3001 \
 		-e DISPLAY=10.0.0.6:0 \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		mdotcarter/devenv:latest$(1) \

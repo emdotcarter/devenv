@@ -21,4 +21,8 @@ RUN sudo apt update && sudo apt install -y \
         python3-pip \
         python3-venv
 
+# Pyenv
 RUN curl https://pyenv.run | bash
+
+# NVM
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
