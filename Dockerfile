@@ -23,7 +23,6 @@ RUN sudo apt-get update && sudo apt-get install -y \
       locales \
       procps \
       gnupg \
-      tmux \
       curl \
       wget \
       git \
@@ -60,7 +59,6 @@ RUN ln -s ${DOTFILES}/zprofile ${HOME}/.zprofile
 RUN ln -s ${DOTFILES}/zshrc ${HOME}/.zshrc
 RUN ln -s ${DOTFILES}/ssh/config ${HOME}/.ssh/config
 RUN ln -s ${DOTFILES}/ssh/ssh_agent_init.sh ${HOME}/.ssh/ssh_agent_init.sh
-RUN ln -s ${DOTFILES}/tmux.conf ${HOME}/.tmux.conf
 RUN ln -s ${DOTFILES}/gitconfig ${HOME}/.gitconfig
 RUN ln -s ${DOTFILES}/vimrc ${HOME}/.vimrc
 
@@ -72,4 +70,4 @@ RUN KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/ma
 
 WORKDIR ${DEV}
 
-ENTRYPOINT ["tmux", "new"]
+ENTRYPOINT ["/bin/zsh"]
